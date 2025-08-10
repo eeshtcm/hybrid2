@@ -16,3 +16,10 @@ print(corr_equity_rates(df_px3, 'SPX Index', 'USGG2YR Index', rates_in_bps=True)
 # Rolling correlation if you want:
 rc = rolling_corr(df_px3, 'SPX Index', 'USGG2YR Index',
                   window=252, classes={'SPX Index':'Equity','USGG2YR Index':'Rates'})
+
+
+rc_eq_cmdty.dropna().plot(figsize=(10, 5), title="Rolling 6M Correlation: SPX vs XAU")
+plt.axhline(0, color='black', linewidth=1, linestyle='--')  # zero line for reference
+plt.ylabel("Correlation")
+plt.xlabel("Date")
+plt.show()
