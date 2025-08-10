@@ -18,8 +18,18 @@ rc = rolling_corr(df_px3, 'SPX Index', 'USGG2YR Index',
                   window=252, classes={'SPX Index':'Equity','USGG2YR Index':'Rates'})
 
 
+# Calculate rolling correlation (6 months ≈ 126 trading days)
+rc_eq_cmdty = rolling_corr(
+    df_px, 'SPX Index', 'XAU Curncy',
+    window=126,
+    classes={'SPX Index': 'Equity', 'XAU Curncy': 'Commodity'}
+)
+
+# Now plot it
+import matplotlib.pyplot as plt
+
 rc_eq_cmdty.dropna().plot(figsize=(10, 5), title="Rolling 6M Correlation: SPX vs XAU")
-plt.axhline(0, color='black', linewidth=1, linestyle='--')  # zero line for reference
+plt.axhline(0, color='black', linewidth=1, linestyle='--')
 plt.ylabel("Correlation")
 plt.xlabel("Date")
 plt.show()
