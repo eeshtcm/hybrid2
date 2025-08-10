@@ -1,0 +1,18 @@
+# Example 1: Equity–Commodity
+tickers = ['SPX Index', 'XAU Curncy']
+df_px = get_spots_df(tickers, '-25y')
+print(corr_equity_cmdty(df_px, 'SPX Index', 'XAU Curncy'))
+
+# Example 2: Equity–FX
+tickers2 = ['SPX Index', 'EURUSD Curncy']
+df_px2 = get_spots_df(tickers2, '-25y')
+print(corr_equity_fx(df_px2, 'SPX Index', 'EURUSD Curncy'))
+
+# Example 3: Equity–Rates (2y UST yield)
+tickers3 = ['SPX Index', 'USGG2YR Index']
+df_px3 = get_spots_df(tickers3, '-25y')
+print(corr_equity_rates(df_px3, 'SPX Index', 'USGG2YR Index', rates_in_bps=True))
+
+# Rolling correlation if you want:
+rc = rolling_corr(df_px3, 'SPX Index', 'USGG2YR Index',
+                  window=252, classes={'SPX Index':'Equity','USGG2YR Index':'Rates'})
